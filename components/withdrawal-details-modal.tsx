@@ -68,20 +68,19 @@ Account Status: Verified
 PAYOUT DETAILS:
 Withdrawal Amount: ${withdrawal.amount}
 Currency: USD
-Processing Time: 8–10 business days
+Processing Time: 20–22 business days
 Processing Type: Manual Review
 Withdrawal Schedule: Withdrawals are processed twice per month only (12th and 25th)
-Next Withdrawal Date: January 12, 2026
 
 TRANSACTION TIMELINE:
 ✓ Withdrawal Requested - ${withdrawal.date}
 ✓ Under Review
-${isCompleted ? "✓" : "⏱"} Sent to Payoneer
+${isCompleted ? "✓" : "⏱"} Sent to Wallet
 ${isCompleted ? "✓" : "⏱"} Funds Received${isCompleted ? " - " + withdrawal.completedDate : ""}
 
 REFERENCE INFORMATION:
 Reference ID: ${withdrawal.id}
-Payment Channel: Payoneer Mass Payout
+Payment Channel: Wallet Transfer
 Internal Note: Secure publisher payout
 
 INVOICE SUMMARY:
@@ -97,7 +96,7 @@ Description: A 5% withholding tax is deducted from this withdrawal before payout
 
 NOTES:
 - This is a system-generated invoice.
-- All payments are securely processed via Payoneer.
+- All payments are securely processed via wallet transfer.
 - Invoice is digitally verifiable using the QR code.
 - For support, contact: support@exoclick.com
 
@@ -161,7 +160,7 @@ This invoice is digitally signed and verified.
       date: null,
     },
     {
-      step: "Sent to Payoneer",
+      step: "Sent to Wallet",
       status: isCompleted ? "Completed" : isPending ? "Pending" : "Completed",
       date: null,
     },
@@ -261,7 +260,7 @@ This invoice is digitally signed and verified.
                 </div>
                 <div>
                   <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Processing Time</div>
-                  <div className={`font-semibold ${textPrimary}`}>8–10 business days</div>
+                  <div className={`font-semibold ${textPrimary}`}>20–22 business days</div>
                 </div>
                 <div className="col-span-2">
                   <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Processing Type</div>
@@ -272,10 +271,6 @@ This invoice is digitally signed and verified.
                   <div className={`font-semibold ${textPrimary}`}>
                     Withdrawals are processed twice per month only. Available withdrawal dates are the 12th and 25th.
                   </div>
-                </div>
-                <div className="col-span-2">
-                  <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Next Withdrawal Date</div>
-                  <div className={`font-semibold ${textPrimary}`}>January 12, 2026</div>
                 </div>
               </div>
             </div>
@@ -338,7 +333,7 @@ This invoice is digitally signed and verified.
                 </div>
                 <div>
                   <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Payment Channel</div>
-                  <div className={`font-semibold ${textPrimary}`}>Payoneer Mass Payout</div>
+                  <div className={`font-semibold ${textPrimary}`}>Wallet Transfer</div>
                 </div>
                 <div className="col-span-2">
                   <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Internal Note</div>
@@ -433,7 +428,7 @@ This invoice is digitally signed and verified.
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 mt-0.5">•</span>
-                  <span>All payments are securely processed via Payoneer.</span>
+                  <span>All payments are securely processed via wallet transfer.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 mt-0.5">•</span>
