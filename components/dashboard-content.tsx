@@ -106,28 +106,50 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "May 28, 2026", impressions: 6938, clicks: 240, revenue: 24.10, ctr: "3.46%", ecpm: "64.00" },
     { date: "May 29, 2026", impressions: 6958, clicks: 241, revenue: 24.25, ctr: "3.46%", ecpm: "64.55" },
     { date: "May 30, 2026", impressions: 6975, clicks: 242, revenue: 24.40, ctr: "3.47%", ecpm: "65.00" },
+    { date: "May 31, 2026", impressions: 6543, clicks: 210, revenue: 20.11, ctr: "3.21%", ecpm: "56.77" },
+    { date: "Jun 01, 2026", impressions: 6568, clicks: 213, revenue: 20.42, ctr: "3.24%", ecpm: "57.66" },
+    { date: "Jun 02, 2026", impressions: 6592, clicks: 216, revenue: 20.73, ctr: "3.27%", ecpm: "58.44" },
+    { date: "Jun 03, 2026", impressions: 6618, clicks: 219, revenue: 21.05, ctr: "3.31%", ecpm: "59.12" },
+    { date: "Jun 04, 2026", impressions: 6642, clicks: 222, revenue: 21.33, ctr: "3.34%", ecpm: "59.88" },
+    { date: "Jun 05, 2026", impressions: 6670, clicks: 225, revenue: 21.61, ctr: "3.37%", ecpm: "60.55" },
+    { date: "Jun 06, 2026", impressions: 6701, clicks: 229, revenue: 21.90, ctr: "3.42%", ecpm: "61.33" },
+    { date: "Jun 07, 2026", impressions: 6730, clicks: 232, revenue: 22.20, ctr: "3.45%", ecpm: "62.44" },
+    { date: "Jun 08, 2026", impressions: 6760, clicks: 235, revenue: 22.55, ctr: "3.48%", ecpm: "64.10" },
+    { date: "Jun 09, 2026", impressions: 6783, clicks: 237, revenue: 22.90, ctr: "3.50%", ecpm: "65.33" },
   ]
 
   const recentActivityData = [
-    { date: "May 30, 2026", impressions: 6975, clicks: 242, revenue: 24.40, ctr: "3.47%", ecpm: "65.00" },
-    { date: "May 29, 2026", impressions: 6958, clicks: 241, revenue: 24.25, ctr: "3.46%", ecpm: "64.55" },
-    { date: "May 28, 2026", impressions: 6938, clicks: 240, revenue: 24.10, ctr: "3.46%", ecpm: "64.00" },
-    { date: "May 27, 2026", impressions: 6910, clicks: 238, revenue: 23.88, ctr: "3.44%", ecpm: "63.55" },
-    { date: "May 26, 2026", impressions: 6881, clicks: 236, revenue: 23.66, ctr: "3.43%", ecpm: "63.00" },
-    { date: "May 25, 2026", impressions: 6850, clicks: 234, revenue: 23.40, ctr: "3.41%", ecpm: "62.48" },
-    { date: "May 24, 2026", impressions: 6822, clicks: 232, revenue: 23.15, ctr: "3.40%", ecpm: "62.02" },
-    { date: "May 23, 2026", impressions: 6790, clicks: 230, revenue: 22.94, ctr: "3.39%", ecpm: "61.55" },
-    { date: "May 22, 2026", impressions: 6764, clicks: 228, revenue: 22.62, ctr: "3.37%", ecpm: "61.04" },
-    { date: "May 21, 2026", impressions: 6738, clicks: 226, revenue: 22.35, ctr: "3.35%", ecpm: "60.55" },
+    { date: "Jun 09, 2026", impressions: 6783, clicks: 237, revenue: 22.90, ctr: "3.50%", ecpm: "65.33" },
+    { date: "Jun 08, 2026", impressions: 6760, clicks: 235, revenue: 22.55, ctr: "3.48%", ecpm: "64.10" },
+    { date: "Jun 07, 2026", impressions: 6730, clicks: 232, revenue: 22.20, ctr: "3.45%", ecpm: "62.44" },
+    { date: "Jun 06, 2026", impressions: 6701, clicks: 229, revenue: 21.90, ctr: "3.42%", ecpm: "61.33" },
+    { date: "Jun 05, 2026", impressions: 6670, clicks: 225, revenue: 21.61, ctr: "3.37%", ecpm: "60.55" },
+    { date: "Jun 04, 2026", impressions: 6642, clicks: 222, revenue: 21.33, ctr: "3.34%", ecpm: "59.88" },
+    { date: "Jun 03, 2026", impressions: 6618, clicks: 219, revenue: 21.05, ctr: "3.31%", ecpm: "59.12" },
+    { date: "Jun 02, 2026", impressions: 6592, clicks: 216, revenue: 20.73, ctr: "3.27%", ecpm: "58.44" },
+    { date: "Jun 01, 2026", impressions: 6568, clicks: 213, revenue: 20.42, ctr: "3.24%", ecpm: "57.66" },
+    { date: "May 31, 2026", impressions: 6543, clicks: 210, revenue: 20.11, ctr: "3.21%", ecpm: "56.77" },
   ]
 
   const latestActivity = {
-    date: "Jan 16, 2026",
-    revenue: 0.003,
-    impressions: 10,
-    clicks: 1,
-    ctr: "10.00%",
-    ecpm: "3.00",
+    date: "Jun 09, 2026",
+    revenue: 22.90,
+    impressions: 6783,
+    clicks: 237,
+    ctr: "3.50%",
+    ecpm: "65.33",
+  }
+
+  const todayRevenue = 22.90
+  const todayImpressions = 6783
+  const todayClicks = 237
+  const todayCTR = "3.50"
+  const todayECPM = "65.33"
+
+  const todayTotals = {
+    impressions: 6783,
+    clicks: 237,
+    revenue: 22.90,
   }
 
   const todayRevenue = 0.003
