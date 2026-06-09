@@ -79,25 +79,44 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 0
-  const pendingBalance = 0
-  const thisMonthEarnings = 0.003
-  const totalPayments = 0
-  const totalEarnings = 0.003
-  const nextWithdrawalDate = ""
+  const availableBalance = 172.91
+  const pendingBalance = 10329.98
+  const thisMonthEarnings = 403.94
+  const totalPayments = 2534.76
+  const totalEarnings = 403.94
+  const nextWithdrawalDate = "29 Jun 2026"
 
   const allReportData = [
-    { date: "Jan 13, 2026", impressions: 0, clicks: 0, revenue: 0, ctr: "0.00%", ecpm: "0.00" },
-    { date: "Jan 14, 2026", impressions: 0, clicks: 0, revenue: 0, ctr: "0.00%", ecpm: "0.00" },
-    { date: "Jan 15, 2026", impressions: 0, clicks: 0, revenue: 0, ctr: "0.00%", ecpm: "0.00" },
-    { date: "Jan 16, 2026", impressions: 10, clicks: 1, revenue: 0.003, ctr: "10.00%", ecpm: "3.00" },
+    { date: "Jun 14, 2026", impressions: 6543, clicks: 212, revenue: 20.33, ctr: "3.24%", ecpm: "56.55" },
+    { date: "Jun 15, 2026", impressions: 6570, clicks: 214, revenue: 20.61, ctr: "3.26%", ecpm: "57.10" },
+    { date: "Jun 16, 2026", impressions: 6601, clicks: 216, revenue: 20.95, ctr: "3.27%", ecpm: "57.88" },
+    { date: "Jun 17, 2026", impressions: 6625, clicks: 218, revenue: 21.22, ctr: "3.29%", ecpm: "58.33" },
+    { date: "Jun 18, 2026", impressions: 6652, clicks: 220, revenue: 21.55, ctr: "3.30%", ecpm: "58.95" },
+    { date: "Jun 19, 2026", impressions: 6680, clicks: 222, revenue: 21.88, ctr: "3.32%", ecpm: "59.44" },
+    { date: "Jun 20, 2026", impressions: 6712, clicks: 224, revenue: 22.10, ctr: "3.34%", ecpm: "60.02" },
+    { date: "Jun 21, 2026", impressions: 6738, clicks: 226, revenue: 22.35, ctr: "3.35%", ecpm: "60.55" },
+    { date: "Jun 22, 2026", impressions: 6764, clicks: 228, revenue: 22.62, ctr: "3.37%", ecpm: "61.04" },
+    { date: "Jun 23, 2026", impressions: 6790, clicks: 230, revenue: 22.94, ctr: "3.39%", ecpm: "61.55" },
+    { date: "Jun 24, 2026", impressions: 6822, clicks: 232, revenue: 23.15, ctr: "3.40%", ecpm: "62.02" },
+    { date: "Jun 25, 2026", impressions: 6850, clicks: 234, revenue: 23.40, ctr: "3.41%", ecpm: "62.48" },
+    { date: "Jun 26, 2026", impressions: 6881, clicks: 236, revenue: 23.66, ctr: "3.43%", ecpm: "63.00" },
+    { date: "Jun 27, 2026", impressions: 6910, clicks: 238, revenue: 23.88, ctr: "3.44%", ecpm: "63.55" },
+    { date: "Jun 28, 2026", impressions: 6938, clicks: 240, revenue: 24.10, ctr: "3.46%", ecpm: "64.00" },
+    { date: "Jun 29, 2026", impressions: 6958, clicks: 241, revenue: 24.25, ctr: "3.46%", ecpm: "64.55" },
+    { date: "Jun 30, 2026", impressions: 6975, clicks: 242, revenue: 24.40, ctr: "3.47%", ecpm: "65.00" },
   ]
 
   const recentActivityData = [
-    { date: "Jan 16, 2026", impressions: 10, clicks: 1, revenue: 0.003, ctr: "10.00%", ecpm: "3.00" },
-    { date: "Jan 15, 2026", impressions: 0, clicks: 0, revenue: 0, ctr: "0.00%", ecpm: "0.00" },
-    { date: "Jan 14, 2026", impressions: 0, clicks: 0, revenue: 0, ctr: "0.00%", ecpm: "0.00" },
-    { date: "Jan 13, 2026", impressions: 0, clicks: 0, revenue: 0, ctr: "0.00%", ecpm: "0.00" },
+    { date: "Jun 30, 2026", impressions: 6975, clicks: 242, revenue: 24.40, ctr: "3.47%", ecpm: "65.00" },
+    { date: "Jun 29, 2026", impressions: 6958, clicks: 241, revenue: 24.25, ctr: "3.46%", ecpm: "64.55" },
+    { date: "Jun 28, 2026", impressions: 6938, clicks: 240, revenue: 24.10, ctr: "3.46%", ecpm: "64.00" },
+    { date: "Jun 27, 2026", impressions: 6910, clicks: 238, revenue: 23.88, ctr: "3.44%", ecpm: "63.55" },
+    { date: "Jun 26, 2026", impressions: 6881, clicks: 236, revenue: 23.66, ctr: "3.43%", ecpm: "63.00" },
+    { date: "Jun 25, 2026", impressions: 6850, clicks: 234, revenue: 23.40, ctr: "3.41%", ecpm: "62.48" },
+    { date: "Jun 24, 2026", impressions: 6822, clicks: 232, revenue: 23.15, ctr: "3.40%", ecpm: "62.02" },
+    { date: "Jun 23, 2026", impressions: 6790, clicks: 230, revenue: 22.94, ctr: "3.39%", ecpm: "61.55" },
+    { date: "Jun 22, 2026", impressions: 6764, clicks: 228, revenue: 22.62, ctr: "3.37%", ecpm: "61.04" },
+    { date: "Jun 21, 2026", impressions: 6738, clicks: 226, revenue: 22.35, ctr: "3.35%", ecpm: "60.55" },
   ]
 
   const latestActivity = {
@@ -1623,7 +1642,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                   <RecentActivityRow
                     key={index}
                     date={item.date}
-                    domain="techblogi.com"
+                    domain="edudegrehub.com"
                     impressions={item.impressions}
                     clicks={item.clicks}
                     ctr={item.ctr}
