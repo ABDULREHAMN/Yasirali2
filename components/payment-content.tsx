@@ -127,6 +127,18 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       priority: 1,
       addedDate: "Apr 15, 2026",
     },
+    {
+      id: "pm-3",
+      type: "crypto",
+      accountHolderName: "SafePall",
+      email: "usdt.safepall@wallet",
+      country: "International",
+      currency: "USDT",
+      status: "Active",
+      isDefault: false,
+      priority: 2,
+      addedDate: "Jun 09, 2026",
+    },
   ])
 
   const [showAddMethodModal, setShowAddMethodModal] = useState(false)

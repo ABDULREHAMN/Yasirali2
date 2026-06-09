@@ -39,6 +39,18 @@ export function PaymentMethods() {
       network: "Abdul Rehman",
       status: "active",
     },
+    {
+      id: "pm_3",
+      type: "crypto",
+      displayName: "USDT TRC20",
+      details: "SafePall",
+      verified: true,
+      isDefault: false,
+      addedDate: "Jun 09, 2026",
+      icon: "crypto",
+      network: "SafePall",
+      status: "active",
+    },
   ])
 
   const [showAddMethodDialog, setShowAddMethodDialog] = useState(false)
