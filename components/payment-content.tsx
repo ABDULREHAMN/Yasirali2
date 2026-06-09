@@ -66,7 +66,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
     {
       id: "w1",
-      date: "06 Jun 2026",
+      date: "06 May 2026",
       method: "USDT TRC20",
       amount: "$10,329.98",
       status: "Pending",
@@ -201,7 +201,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   const totalEarnings = 0
   const totalPayments = 2534.76
   const thisMonthEarnings = 0
-  const nextWithdrawalDate = "29 Jun 2026"
+  const nextWithdrawalDate = "29 May 2026"
 
   const paymentEntries = []
 
