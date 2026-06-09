@@ -63,11 +63,60 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   const [selectedPaymentEntry, setSelectedPaymentEntry] = useState<any>(null)
   const { kycStatus, openKycPromptModal } = useKyc()
 
-  const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([])
+  const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
+    {
+      id: "w1",
+      date: "06 May 2026",
+      method: "USDT TRC20",
+      amount: "$10,329.98",
+      status: "Pending",
+      completedDate: undefined,
+    },
+    {
+      id: "w2",
+      date: "30 Apr 2026",
+      method: "USDT TRC20",
+      amount: "$9,757.98",
+      status: "Cancelled",
+      completedDate: undefined,
+    },
+    {
+      id: "w3",
+      date: "14 Apr 2026",
+      method: "Payoneer",
+      amount: "$7,915.22",
+      status: "Failed",
+      completedDate: undefined,
+    },
+    {
+      id: "w4",
+      date: "29 Mar 2026",
+      method: "Payoneer",
+      amount: "$1,311.20",
+      status: "Completed",
+      completedDate: "29 Mar 2026",
+    },
+    {
+      id: "w5",
+      date: "12 Mar 2026",
+      method: "Payoneer",
+      amount: "$945.22",
+      status: "Completed",
+      completedDate: "12 Mar 2026",
+    },
+    {
+      id: "w6",
+      date: "25 Feb 2026",
+      method: "Payoneer",
+      amount: "$578.23",
+      status: "Completed",
+      completedDate: "25 Feb 2026",
+    },
+  ])
 
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethodData[]>([
     {
-      id: "pm-1",
+      id: "pm-2",
       type: "payoneer",
       accountHolderName: "Abdul Rehman",
       email: "abdul.rehman.soashraf@gmail.com",
@@ -76,7 +125,19 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       status: "Active",
       isDefault: true,
       priority: 1,
-      addedDate: "Jan 15, 2026",
+      addedDate: "Apr 15, 2026",
+    },
+    {
+      id: "pm-3",
+      type: "crypto",
+      accountHolderName: "SafePall",
+      email: "usdt.safepall@wallet",
+      country: "International",
+      currency: "USDT",
+      status: "Active",
+      isDefault: false,
+      priority: 2,
+      addedDate: "Jun 09, 2026",
     },
   ])
 
@@ -135,12 +196,12 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 0
-  const pendingBalance = 0
+  const availableBalance = 172.91
+  const pendingBalance = 10329.98
   const totalEarnings = 0
-  const totalPayments = 0
+  const totalPayments = 2534.76
   const thisMonthEarnings = 0
-  const nextWithdrawalDate = ""
+  const nextWithdrawalDate = "29 May 2026"
 
   const paymentEntries = []
 
