@@ -68,9 +68,11 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       id: "w1",
       date: "06 May 2026",
       method: "USDT TRC20",
-      amount: "$10,329.98",
+      amount: "$9,813.48",
       status: "Pending",
       completedDate: undefined,
+      grossAmount: "$10,329.98",
+      tax: "$516.49",
     },
     {
       id: "w2",
