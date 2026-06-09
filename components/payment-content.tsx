@@ -63,7 +63,56 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   const [selectedPaymentEntry, setSelectedPaymentEntry] = useState<any>(null)
   const { kycStatus, openKycPromptModal } = useKyc()
 
-  const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([])
+  const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
+    {
+      id: "w1",
+      date: "06 Jun 2026",
+      method: "USDT TRC20",
+      amount: "$10,329.98",
+      status: "Pending",
+      completedDate: undefined,
+    },
+    {
+      id: "w2",
+      date: "30 Apr 2026",
+      method: "USDT TRC20",
+      amount: "$9,757.98",
+      status: "Cancelled",
+      completedDate: undefined,
+    },
+    {
+      id: "w3",
+      date: "14 Apr 2026",
+      method: "Payoneer",
+      amount: "$7,915.22",
+      status: "Failed",
+      completedDate: undefined,
+    },
+    {
+      id: "w4",
+      date: "29 Mar 2026",
+      method: "Payoneer",
+      amount: "$1,311.20",
+      status: "Completed",
+      completedDate: "29 Mar 2026",
+    },
+    {
+      id: "w5",
+      date: "12 Mar 2026",
+      method: "Payoneer",
+      amount: "$945.22",
+      status: "Completed",
+      completedDate: "12 Mar 2026",
+    },
+    {
+      id: "w6",
+      date: "25 Feb 2026",
+      method: "Payoneer",
+      amount: "$578.23",
+      status: "Completed",
+      completedDate: "25 Feb 2026",
+    },
+  ])
 
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethodData[]>([
     {
@@ -135,12 +184,12 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 0
-  const pendingBalance = 0
+  const availableBalance = 172.91
+  const pendingBalance = 10329.98
   const totalEarnings = 0
-  const totalPayments = 0
+  const totalPayments = 2534.76
   const thisMonthEarnings = 0
-  const nextWithdrawalDate = ""
+  const nextWithdrawalDate = "29 Jun 2026"
 
   const paymentEntries = []
 
