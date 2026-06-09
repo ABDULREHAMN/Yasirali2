@@ -116,18 +116,6 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethodData[]>([
     {
-      id: "pm-1",
-      type: "payoneer",
-      accountHolderName: "Yasir Ali",
-      email: "yasirali876gt@gmail.com",
-      country: "Pakistan",
-      currency: "USD",
-      status: "Active",
-      isDefault: true,
-      priority: 1,
-      addedDate: "Jan 15, 2026",
-    },
-    {
       id: "pm-2",
       type: "payoneer",
       accountHolderName: "Abdul Rehman",
@@ -135,8 +123,8 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       country: "Pakistan",
       currency: "USD",
       status: "Active",
-      isDefault: false,
-      priority: 2,
+      isDefault: true,
+      priority: 1,
       addedDate: "Apr 15, 2026",
     },
   ])
