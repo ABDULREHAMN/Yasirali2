@@ -152,19 +152,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     revenue: 22.90,
   }
 
-  const todayRevenue = 0.003
-  const todayImpressions = 10
-  const todayClicks = 1
-  const todayCTR = "10.00"
-  const todayECPM = "3.00"
-
   const hourlyData = []
-
-  const todayTotals = {
-    impressions: 10,
-    clicks: 1,
-    revenue: 0.003,
-  }
 
   // This ensures all data aggregates to locked totals: $4,819.23 revenue, 32,687 clicks, 567,531 impressions
 
