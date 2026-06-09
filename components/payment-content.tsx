@@ -69,8 +69,8 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     {
       id: "pm-1",
       type: "payoneer",
-      accountHolderName: "Abdul Rehman",
-      email: "abdul.rehman.soashraf@gmail.com",
+      accountHolderName: "Yasir Ali",
+      email: "yasirali876gt@gmail.com",
       country: "Pakistan",
       currency: "USD",
       status: "Active",
