@@ -34,7 +34,7 @@ export function PaymentMethods() {
       details: "yasirali876gt@gmail.com",
       verified: true,
       isDefault: true,
-      addedDate: "Jan 13, 2026",
+      addedDate: "Jan 15, 2026",
       icon: "payoneer",
       network: "Yasir Ali",
       status: "active",
