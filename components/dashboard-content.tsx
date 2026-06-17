@@ -124,6 +124,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const recentActivityData = [
+    { date: "Jun 17, 2026", impressions: 0, clicks: 0, revenue: 0.00, ctr: "0.00%", ecpm: "0.00" },
+    { date: "Jun 16, 2026", impressions: 0, clicks: 0, revenue: 0.00, ctr: "0.00%", ecpm: "0.00" },
+    { date: "Jun 15, 2026", impressions: 0, clicks: 0, revenue: 0.00, ctr: "0.00%", ecpm: "0.00" },
     { date: "Jun 14, 2026", impressions: 432, clicks: 14, revenue: 0.89, ctr: "3.24%", ecpm: "61.77" },
     { date: "Jun 13, 2026", impressions: 342, clicks: 13, revenue: 0.32, ctr: "3.80%", ecpm: "59.88" },
     { date: "Jun 12, 2026", impressions: 6871, clicks: 242, revenue: 23.01, ctr: "3.52%", ecpm: "66.98" },
@@ -131,30 +134,27 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Jun 10, 2026", impressions: 6654, clicks: 212, revenue: 21.99, ctr: "3.19%", ecpm: "57.98" },
     { date: "Jun 09, 2026", impressions: 6783, clicks: 237, revenue: 22.90, ctr: "3.50%", ecpm: "65.33" },
     { date: "Jun 08, 2026", impressions: 6760, clicks: 235, revenue: 22.55, ctr: "3.48%", ecpm: "64.10" },
-    { date: "Jun 07, 2026", impressions: 6730, clicks: 232, revenue: 22.20, ctr: "3.45%", ecpm: "62.44" },
-    { date: "Jun 06, 2026", impressions: 6701, clicks: 229, revenue: 21.90, ctr: "3.42%", ecpm: "61.33" },
-    { date: "Jun 05, 2026", impressions: 6670, clicks: 225, revenue: 21.61, ctr: "3.37%", ecpm: "60.55" },
   ]
 
   const latestActivity = {
-    date: "Jun 14, 2026",
-    revenue: 0.89,
-    impressions: 432,
-    clicks: 14,
-    ctr: "3.24%",
-    ecpm: "61.77",
+    date: "Jun 17, 2026",
+    revenue: 0.00,
+    impressions: 0,
+    clicks: 0,
+    ctr: "0.00%",
+    ecpm: "0.00",
   }
 
-  const todayRevenue = 0.89
-  const todayImpressions = 432
-  const todayClicks = 14
-  const todayCTR = "3.24"
-  const todayECPM = "61.77"
+  const todayRevenue = 0.00
+  const todayImpressions = 0
+  const todayClicks = 0
+  const todayCTR = "0.00"
+  const todayECPM = "0.00"
 
   const todayTotals = {
-    impressions: 432,
-    clicks: 14,
-    revenue: 0.89,
+    impressions: 0,
+    clicks: 0,
+    revenue: 0.00,
   }
 
   const hourlyData = []
