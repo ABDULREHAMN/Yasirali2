@@ -658,12 +658,12 @@ export function ReportContent() {
             <table className="w-full">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left py-3 px-4 font-medium text-sm">Date</th>
-                  <th className="text-left py-3 px-4 font-medium text-sm">Impressions</th>
-                  <th className="text-left py-3 px-4 font-medium text-sm">Clicks</th>
-                  <th className="text-left py-3 px-4 font-medium text-sm">CTR</th>
-                  <th className="text-left py-3 px-4 font-medium text-sm">eCPM</th>
-                  <th className="text-left py-3 px-4 font-medium text-sm">Revenue</th>
+                  <th className="text-left py-3 px-4 font-medium text-sm h-12 align-middle">Date</th>
+                  <th className="text-left py-3 px-4 font-medium text-sm h-12 align-middle">Impressions</th>
+                  <th className="text-left py-3 px-4 font-medium text-sm h-12 align-middle">Clicks</th>
+                  <th className="text-left py-3 px-4 font-medium text-sm h-12 align-middle">CTR</th>
+                  <th className="text-left py-3 px-4 font-medium text-sm h-12 align-middle">eCPM</th>
+                  <th className="text-left py-3 px-4 font-medium text-sm h-12 align-middle">Revenue</th>
                 </tr>
               </thead>
               <tbody>
@@ -710,13 +710,13 @@ interface ReportRowProps {
 
 function ReportRow({ date, impressions, clicks, ctr, ecpm, revenue }: ReportRowProps) {
   return (
-    <tr className="border-b hover:bg-gray-50">
-      <td className="py-3 px-4 text-sm">{date}</td>
-      <td className="py-3 px-4 text-sm">{impressions}</td>
-      <td className="py-3 px-4 text-sm">{clicks}</td>
-      <td className="py-3 px-4 text-sm">{ctr}</td>
-      <td className="py-3 px-4 text-sm">{ecpm}</td>
-      <td className="py-3 px-4 text-sm font-medium">{revenue}</td>
+    <tr className="border-b hover:bg-gray-50 h-12">
+      <td className="py-3 px-4 text-sm h-12 align-middle whitespace-nowrap">{date}</td>
+      <td className="py-3 px-4 text-sm h-12 align-middle whitespace-nowrap">{impressions}</td>
+      <td className="py-3 px-4 text-sm h-12 align-middle whitespace-nowrap">{clicks}</td>
+      <td className="py-3 px-4 text-sm h-12 align-middle whitespace-nowrap">{ctr}</td>
+      <td className="py-3 px-4 text-sm h-12 align-middle whitespace-nowrap">{ecpm}</td>
+      <td className="py-3 px-4 text-sm font-medium h-12 align-middle whitespace-nowrap">{revenue}</td>
     </tr>
   )
 }
