@@ -2,7 +2,7 @@
 
 import React from "react"
 import { useState, useMemo, useEffect } from "react"
-import { getTodayDate, generateMissingEntries } from "@/lib/date-utils"
+import { getTodayDate, generateAllMissingEntries } from "@/lib/date-utils"
 import {
   Eye,
   MousePointer,
@@ -124,7 +124,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Jun 14, 2026", impressions: 432, clicks: 14, revenue: 0.89, ctr: "3.24%", ecpm: "61.77" },
   ]
 
-  const missingReportEntries = generateMissingEntries(baseAllReportData, baseAllReportData[baseAllReportData.length - 1].date)
+  const missingReportEntries = generateAllMissingEntries(baseAllReportData, baseAllReportData[baseAllReportData.length - 1].date)
   const allReportData = [...baseAllReportData, ...missingReportEntries]
 
   // Generate automatic recent activity data including today
@@ -139,7 +139,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const todayDate = getTodayDate()
-  const missingEntries = generateMissingEntries(baseRecentActivityData, baseRecentActivityData[0].date)
+  const missingEntries = generateAllMissingEntries(baseRecentActivityData, baseRecentActivityData[0].date)
   const recentActivityData = [
     ...missingEntries.reverse(),
     ...baseRecentActivityData,
