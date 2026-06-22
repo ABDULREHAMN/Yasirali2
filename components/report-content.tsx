@@ -4,7 +4,7 @@ import { Download, Filter, RefreshCw, BarChart2 } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { generateMissingFormattedEntries } from "@/lib/date-utils"
+import { generateAllMissingEntries, getDataForDateRange, FormattedDailyData } from "@/lib/date-utils"
 
 const baseReportData = {
   "Last 7 Days": {
@@ -355,42 +355,46 @@ const statisticsTotals = {
 }
 
 export function ReportContent() {
-  // Generate report data with automatic dates
-  const reportData = useMemo(() => {
-    const enhancedData = { ...baseReportData }
-    const dateRanges = ["Last 7 Days", "Last 30 Days", "Last 3 Months", "This Year", "Custom Range"] as const
+  // Generate unified report data with automatic date system
+  const { allDevicesData, desktopData, mobileData } = useMemo(() => {
+    // Collect all unique data from baseReportData across all date ranges
+    const allDevicesSet = new Map<string, FormattedDailyData>()
+    const desktopSet = new Map<string, FormattedDailyData>()
+    const mobileSet = new Map<string, FormattedDailyData>()
 
-    for (const dateRange of dateRanges) {
-      if (enhancedData[dateRange]) {
-        const allCountries = enhancedData[dateRange]["All Countries"]
-        if (allCountries) {
-          // Generate missing entries for each device category
-          const allDevicesData = allCountries["All Devices"] || []
-          const desktopData = allCountries["Desktop"] || []
-          const mobileData = allCountries["Mobile"] || []
-
-          if (allDevicesData.length > 0) {
-            const lastDate = allDevicesData[allDevicesData.length - 1].date
-            const missingAll = generateMissingFormattedEntries(allDevicesData, lastDate)
-            allCountries["All Devices"] = [...allDevicesData, ...missingAll]
-          }
-
-          if (desktopData.length > 0) {
-            const lastDate = desktopData[desktopData.length - 1].date
-            const missingDesktop = generateMissingFormattedEntries(desktopData, lastDate)
-            allCountries["Desktop"] = [...desktopData, ...missingDesktop]
-          }
-
-          if (mobileData.length > 0) {
-            const lastDate = mobileData[mobileData.length - 1].date
-            const missingMobile = generateMissingFormattedEntries(mobileData, lastDate)
-            allCountries["Mobile"] = [...mobileData, ...missingMobile]
-          }
-        }
+    // Iterate through all date ranges and collect data
+    Object.values(baseReportData).forEach((dateRangeData) => {
+      const allCountries = dateRangeData["All Countries"]
+      if (allCountries) {
+        allCountries["All Devices"]?.forEach((item) => allDevicesSet.set(item.date, item))
+        allCountries["Desktop"]?.forEach((item) => desktopSet.set(item.date, item))
+        allCountries["Mobile"]?.forEach((item) => mobileSet.set(item.date, item))
       }
-    }
+    })
 
-    return enhancedData
+    // Convert to arrays and sort newest first
+    const allDevices = Array.from(allDevicesSet.values())
+    const desktop = Array.from(desktopSet.values())
+    const mobile = Array.from(mobileSet.values())
+
+    // Generate missing entries from oldest to today
+    const oldestDate = allDevices.length > 0 ? allDevices[allDevices.length - 1].date : new Date().toLocaleDateString()
+    const missingAll = generateAllMissingEntries(allDevices, oldestDate)
+    const missingDesktop = generateAllMissingEntries(desktop, oldestDate)
+    const missingMobile = generateAllMissingEntries(mobile, oldestDate)
+
+    // Combine and sort newest first
+    const allDevicesData = [...allDevices, ...missingAll].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    )
+    const desktopData = [...desktop, ...missingDesktop].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    )
+    const mobileData = [...mobile, ...missingMobile].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    )
+
+    return { allDevicesData, desktopData, mobileData }
   }, [])
 
   const [showReport] = useState(true)
@@ -400,8 +404,16 @@ export function ReportContent() {
   const [selectedSite, setSelectedSite] = useState("All Sites")
   const [selectedCountry, setSelectedCountry] = useState("All Countries")
   const [selectedDevice, setSelectedDevice] = useState("All Devices")
-  const [currentReportData, setCurrentReportData] = useState(reportData["Last 7 Days"]["All Countries"]["All Devices"])
   const [isFiltered, setIsFiltered] = useState(false)
+
+  // Dynamically filter data based on selected date range and device
+  const currentReportData = useMemo(() => {
+    const sourceData =
+      selectedDevice === "All Devices" ? allDevicesData : selectedDevice === "Desktop" ? desktopData : mobileData
+
+    const filteredByRange = getDataForDateRange(sourceData, selectedDateRange)
+    return filteredByRange
+  }, [selectedDateRange, selectedDevice, allDevicesData, desktopData, mobileData])
 
   const handleGenerateReport = () => {
     // Data already rendered, no action needed
@@ -412,17 +424,7 @@ export function ReportContent() {
   }
 
   const handleApplyFilters = () => {
-    const dateData = reportData[selectedDateRange as keyof typeof reportData]
-    const countryData = dateData?.[selectedCountry as keyof typeof dateData]
-    const deviceData = countryData?.[selectedDevice as keyof typeof countryData]
-
-    if (deviceData) {
-      setCurrentReportData(deviceData)
-      setIsFiltered(true)
-    } else {
-      setCurrentReportData(reportData["Last 7 Days"]["All Countries"]["All Devices"])
-      setIsFiltered(false)
-    }
+    setIsFiltered(true)
   }
 
   const handleReset = () => {
@@ -432,8 +434,6 @@ export function ReportContent() {
     setSelectedSite("All Sites")
     setSelectedCountry("All Countries")
     setSelectedDevice("All Devices")
-
-    setCurrentReportData(reportData["Last 7 Days"]["All Countries"]["All Devices"])
     setIsFiltered(false)
   }
 
