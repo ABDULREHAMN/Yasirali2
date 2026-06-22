@@ -1,11 +1,12 @@
 "use client"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Download, Filter, RefreshCw, BarChart2 } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { generateMissingFormattedEntries } from "@/lib/date-utils"
 
-const reportData = {
+const baseReportData = {
   "Last 7 Days": {
     "All Countries": {
       "All Devices": [
@@ -248,6 +249,44 @@ const statisticsTotals = {
 }
 
 export function ReportContent() {
+  // Generate report data with automatic dates
+  const reportData = useMemo(() => {
+    const enhancedData = { ...baseReportData }
+    const dateRanges = ["Last 7 Days", "Last 30 Days", "Last 3 Months", "This Year", "Custom Range"] as const
+
+    for (const dateRange of dateRanges) {
+      if (enhancedData[dateRange]) {
+        const allCountries = enhancedData[dateRange]["All Countries"]
+        if (allCountries) {
+          // Generate missing entries for each device category
+          const allDevicesData = allCountries["All Devices"] || []
+          const desktopData = allCountries["Desktop"] || []
+          const mobileData = allCountries["Mobile"] || []
+
+          if (allDevicesData.length > 0) {
+            const lastDate = allDevicesData[allDevicesData.length - 1].date
+            const missingAll = generateMissingFormattedEntries(allDevicesData, lastDate)
+            allCountries["All Devices"] = [...allDevicesData, ...missingAll]
+          }
+
+          if (desktopData.length > 0) {
+            const lastDate = desktopData[desktopData.length - 1].date
+            const missingDesktop = generateMissingFormattedEntries(desktopData, lastDate)
+            allCountries["Desktop"] = [...desktopData, ...missingDesktop]
+          }
+
+          if (mobileData.length > 0) {
+            const lastDate = mobileData[mobileData.length - 1].date
+            const missingMobile = generateMissingFormattedEntries(mobileData, lastDate)
+            allCountries["Mobile"] = [...mobileData, ...missingMobile]
+          }
+        }
+      }
+    }
+
+    return enhancedData
+  }, [])
+
   const [showReport] = useState(true)
   const [selectedDateRange, setSelectedDateRange] = useState("Last 7 Days")
   const [selectedGroupBy, setSelectedGroupBy] = useState("Day")

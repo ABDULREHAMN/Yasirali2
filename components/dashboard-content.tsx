@@ -1,7 +1,8 @@
 "use client"
 
 import React from "react"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
+import { getTodayDate, generateMissingEntries } from "@/lib/date-utils"
 import {
   Eye,
   MousePointer,
@@ -88,7 +89,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const lastMonthEarnings = 1340.23
   const forecastEarnings = 1765.33
 
-  const allReportData = [
+  const baseAllReportData = [
     { date: "May 14, 2026", impressions: 6543, clicks: 212, revenue: 20.33, ctr: "3.24%", ecpm: "56.55" },
     { date: "May 15, 2026", impressions: 6570, clicks: 214, revenue: 20.61, ctr: "3.26%", ecpm: "57.10" },
     { date: "May 16, 2026", impressions: 6601, clicks: 216, revenue: 20.95, ctr: "3.27%", ecpm: "57.88" },
@@ -123,10 +124,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Jun 14, 2026", impressions: 432, clicks: 14, revenue: 0.89, ctr: "3.24%", ecpm: "61.77" },
   ]
 
-  const recentActivityData = [
-    { date: "Jun 17, 2026", impressions: 0, clicks: 0, revenue: 0.00, ctr: "0.00%", ecpm: "0.00" },
-    { date: "Jun 16, 2026", impressions: 0, clicks: 0, revenue: 0.00, ctr: "0.00%", ecpm: "0.00" },
-    { date: "Jun 15, 2026", impressions: 0, clicks: 0, revenue: 0.00, ctr: "0.00%", ecpm: "0.00" },
+  const missingReportEntries = generateMissingEntries(baseAllReportData, baseAllReportData[baseAllReportData.length - 1].date)
+  const allReportData = [...baseAllReportData, ...missingReportEntries]
+
+  // Generate automatic recent activity data including today
+  const baseRecentActivityData = [
     { date: "Jun 14, 2026", impressions: 432, clicks: 14, revenue: 0.89, ctr: "3.24%", ecpm: "61.77" },
     { date: "Jun 13, 2026", impressions: 342, clicks: 13, revenue: 0.32, ctr: "3.80%", ecpm: "59.88" },
     { date: "Jun 12, 2026", impressions: 6871, clicks: 242, revenue: 23.01, ctr: "3.52%", ecpm: "66.98" },
@@ -136,25 +138,25 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Jun 08, 2026", impressions: 6760, clicks: 235, revenue: 22.55, ctr: "3.48%", ecpm: "64.10" },
   ]
 
-  const latestActivity = {
-    date: "Jun 17, 2026",
-    revenue: 0.00,
-    impressions: 0,
-    clicks: 0,
-    ctr: "0.00%",
-    ecpm: "0.00",
-  }
+  const todayDate = getTodayDate()
+  const missingEntries = generateMissingEntries(baseRecentActivityData, baseRecentActivityData[0].date)
+  const recentActivityData = [
+    ...missingEntries.reverse(),
+    ...baseRecentActivityData,
+  ].slice(0, 10)
 
-  const todayRevenue = 0.00
-  const todayImpressions = 0
-  const todayClicks = 0
-  const todayCTR = "0.00"
-  const todayECPM = "0.00"
+  const latestActivity = recentActivityData[0]
+
+  const todayRevenue = latestActivity.revenue
+  const todayImpressions = latestActivity.impressions
+  const todayClicks = latestActivity.clicks
+  const todayCTR = latestActivity.ctr.replace("%", "")
+  const todayECPM = latestActivity.ecpm
 
   const todayTotals = {
-    impressions: 0,
-    clicks: 0,
-    revenue: 0.00,
+    impressions: latestActivity.impressions,
+    clicks: latestActivity.clicks,
+    revenue: latestActivity.revenue,
   }
 
   const hourlyData = []
