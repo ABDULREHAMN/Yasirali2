@@ -85,7 +85,8 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const totalPayments = 2534.76
   const totalEarnings = 13164.63 + 68.66
   const nextWithdrawalDate = "29 Jun 2026"
-  const forecastEarnings = 1765.33
+  const forecastEarnings = 0.00
+  const forecastPercentage = 0
 
   const baseAllReportData = [
     { date: "May 14, 2026", impressions: 6543, clicks: 212, revenue: 20.33, ctr: "3.24%", ecpm: "56.55" },
@@ -1277,7 +1278,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
           title="THIS MONTH FORECAST"
           value={`$${forecastEarnings.toFixed(2)}`}
           badge={{
-            text: "89%",
+            text: `${forecastPercentage}%`,
             color: "bg-green-500",
           }}
         />
