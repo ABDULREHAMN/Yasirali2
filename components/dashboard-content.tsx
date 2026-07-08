@@ -147,16 +147,29 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const latestActivity = recentActivityData[0]
 
-  const todayRevenue = latestActivity.revenue
-  const todayImpressions = latestActivity.impressions
-  const todayClicks = latestActivity.clicks
-  const todayCTR = latestActivity.ctr.replace("%", "")
-  const todayECPM = latestActivity.ecpm
+  // Ensure revenue is always a number
+  const revenueValue = typeof latestActivity.revenue === "string" 
+    ? parseFloat(latestActivity.revenue.replace("$", "")) 
+    : latestActivity.revenue
+
+  const todayRevenue = revenueValue
+  const todayImpressions = typeof latestActivity.impressions === "string"
+    ? parseInt(latestActivity.impressions.replace(/,/g, ""), 10)
+    : latestActivity.impressions
+  const todayClicks = typeof latestActivity.clicks === "string"
+    ? parseInt(latestActivity.clicks.replace(/,/g, ""), 10)
+    : latestActivity.clicks
+  const todayCTR = typeof latestActivity.ctr === "string"
+    ? latestActivity.ctr.replace("%", "")
+    : String(latestActivity.ctr).replace("%", "")
+  const todayECPM = typeof latestActivity.ecpm === "string"
+    ? latestActivity.ecpm
+    : String(latestActivity.ecpm)
 
   const todayTotals = {
-    impressions: latestActivity.impressions,
-    clicks: latestActivity.clicks,
-    revenue: latestActivity.revenue,
+    impressions: todayImpressions,
+    clicks: todayClicks,
+    revenue: revenueValue,
   }
 
   const hourlyData = []
