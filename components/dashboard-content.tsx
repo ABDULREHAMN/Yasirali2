@@ -80,13 +80,39 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
+  // Calculate this month's earnings from the data
+  const currentMonth = new Date().getMonth() + 1 // 1-12
+  const currentYear = new Date().getFullYear()
+  
+  let thisMonthEarnings = 0
+  let lastMonthEarnings = 0
+  
+  // Sum revenue for this month and last month
+  allReportData.forEach((item) => {
+    const itemDate = new Date(item.date)
+    const itemMonth = itemDate.getMonth() + 1
+    const itemYear = itemDate.getFullYear()
+    
+    // Parse revenue - handle both string and number formats
+    const revenue = typeof item.revenue === "string" 
+      ? parseFloat(item.revenue.replace("$", ""))
+      : item.revenue
+    
+    if (itemYear === currentYear && itemMonth === currentMonth) {
+      thisMonthEarnings += revenue
+    } else if (
+      (itemYear === currentYear && itemMonth === currentMonth - 1) ||
+      (itemYear === currentYear - 1 && currentMonth === 1 && itemMonth === 12)
+    ) {
+      lastMonthEarnings += revenue
+    }
+  })
+
   const availableBalance = 172.91 + 68.66
   const pendingBalance = 10329.98
-  const thisMonthEarnings = 189.33 + 68.66
   const totalPayments = 2534.76
   const totalEarnings = 13164.63 + 68.66
   const nextWithdrawalDate = "29 Jun 2026"
-  const lastMonthEarnings = 1340.23
   const forecastEarnings = 1765.33
 
   const baseAllReportData = [
