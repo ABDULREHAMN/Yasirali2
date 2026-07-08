@@ -2,7 +2,7 @@
 
 import React from "react"
 import { useState, useMemo, useEffect } from "react"
-import { getTodayDate, generateAllMissingEntries } from "@/lib/date-utils"
+import { getTodayDate, generateAllMissingEntries, parseFormattedDate } from "@/lib/date-utils"
 import {
   Eye,
   MousePointer,
@@ -89,7 +89,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   
   // Sum revenue for this month and last month
   allReportData.forEach((item) => {
-    const itemDate = new Date(item.date)
+    const itemDate = parseFormattedDate(item.date)
     const itemMonth = itemDate.getMonth() + 1
     const itemYear = itemDate.getFullYear()
     
