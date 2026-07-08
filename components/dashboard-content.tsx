@@ -2,7 +2,7 @@
 
 import React from "react"
 import { useState, useMemo, useEffect } from "react"
-import { getTodayDate, generateAllMissingEntries } from "@/lib/date-utils"
+import { getTodayDate, generateAllMissingEntries, parseFormattedDate } from "@/lib/date-utils"
 import {
   Eye,
   MousePointer,
@@ -82,11 +82,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const availableBalance = 172.91 + 68.66
   const pendingBalance = 10329.98
-  const thisMonthEarnings = 189.33 + 68.66
   const totalPayments = 2534.76
   const totalEarnings = 13164.63 + 68.66
   const nextWithdrawalDate = "29 Jun 2026"
-  const lastMonthEarnings = 1340.23
   const forecastEarnings = 1765.33
 
   const baseAllReportData = [
@@ -127,6 +125,34 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const missingReportEntries = generateAllMissingEntries(baseAllReportData, baseAllReportData[baseAllReportData.length - 1].date)
   const allReportData = [...baseAllReportData, ...missingReportEntries]
 
+  // Calculate this month's earnings from the data
+  const currentMonth = new Date().getMonth() + 1 // 1-12
+  const currentYear = new Date().getFullYear()
+  
+  let thisMonthEarnings = 0
+  let lastMonthEarnings = 0
+  
+  // Sum revenue for this month and last month
+  allReportData.forEach((item) => {
+    const itemDate = parseFormattedDate(item.date)
+    const itemMonth = itemDate.getMonth() + 1
+    const itemYear = itemDate.getFullYear()
+    
+    // Parse revenue - handle both string and number formats
+    const revenue = typeof item.revenue === "string" 
+      ? parseFloat(item.revenue.replace("$", ""))
+      : item.revenue
+    
+    if (itemYear === currentYear && itemMonth === currentMonth) {
+      thisMonthEarnings += revenue
+    } else if (
+      (itemYear === currentYear && itemMonth === currentMonth - 1) ||
+      (itemYear === currentYear - 1 && currentMonth === 1 && itemMonth === 12)
+    ) {
+      lastMonthEarnings += revenue
+    }
+  })
+
   // Generate automatic recent activity data including today
   const baseRecentActivityData = [
     { date: "Jun 14, 2026", impressions: 432, clicks: 14, revenue: 0.89, ctr: "3.24%", ecpm: "61.77" },
@@ -147,16 +173,29 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const latestActivity = recentActivityData[0]
 
-  const todayRevenue = latestActivity.revenue
-  const todayImpressions = latestActivity.impressions
-  const todayClicks = latestActivity.clicks
-  const todayCTR = latestActivity.ctr.replace("%", "")
-  const todayECPM = latestActivity.ecpm
+  // Ensure revenue is always a number
+  const revenueValue = typeof latestActivity.revenue === "string" 
+    ? parseFloat(latestActivity.revenue.replace("$", "")) 
+    : latestActivity.revenue
+
+  const todayRevenue = revenueValue
+  const todayImpressions = typeof latestActivity.impressions === "string"
+    ? parseInt(latestActivity.impressions.replace(/,/g, ""), 10)
+    : latestActivity.impressions
+  const todayClicks = typeof latestActivity.clicks === "string"
+    ? parseInt(latestActivity.clicks.replace(/,/g, ""), 10)
+    : latestActivity.clicks
+  const todayCTR = typeof latestActivity.ctr === "string"
+    ? latestActivity.ctr.replace("%", "")
+    : String(latestActivity.ctr).replace("%", "")
+  const todayECPM = typeof latestActivity.ecpm === "string"
+    ? latestActivity.ecpm
+    : String(latestActivity.ecpm)
 
   const todayTotals = {
-    impressions: latestActivity.impressions,
-    clicks: latestActivity.clicks,
-    revenue: latestActivity.revenue,
+    impressions: todayImpressions,
+    clicks: todayClicks,
+    revenue: revenueValue,
   }
 
   const hourlyData = []
